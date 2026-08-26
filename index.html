@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Brighten &amp; Anisha · Wedding Invitation</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2213%22%20fill%3D%22%230C1430%22%2F%3E%3Cpath%20d%3D%22M13%2055V34C13.6%2021%2020%2012%2032%206c12%206%2018.4%2015%2019%2028v21Z%22%20fill%3D%22%23D6B23F%22%2F%3E%3Cpath%20d%3D%22M28.6%2020h6.8v9.4H44v6.8h-8.6V55h-6.8V36.2H20v-6.8h8.6Z%22%20fill%3D%22%230C1430%22%2F%3E%3C%2Fsvg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0C1430">
+<meta name="description" content="Wedding Invitation of Brighten & Anisha — Holy Matrimony & Reception.">
+<meta property="og:title" content="You're Invited — Brighten &amp; Anisha's Wedding">
+<meta property="og:description" content="Join us as we are joined together in Holy Matrimony.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Marcellus+SC&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   Palette drawn from a lit chapel: night-blue vault, limestone
+   walls, gold leaf, and the jewel glass of a rose window.
+   ============================================================ */
+:root{
+  --vault:#0C1430;        /* cathedral night blue */
+  --vault-2:#131E43;      /* lifted vault */
+  --lead:#070C1E;         /* the leading between glass */
+  --limestone:#EDEDE4;    /* cool chapel stone */
+  --limestone-2:#E3E3D8;
+  --gold:#C9A227;         /* gold leaf */
+  --gold-soft:#E3C766;
+  --cobalt:#2A4A9B;
+  --rose:#A8324A;
+  --verdigris:#2E6E5E;
+  --amethyst:#5B3E8E;
+  --ink:#1A1F32;
+  --muted:#6E7182;
+
+  --display:'Marcellus', serif;
+  --caps:'Marcellus SC', serif;
+  --script:'Cormorant Garamond', serif;
+  --body:'Karla', system-ui, sans-serif;
+
+  --ease:cubic-bezier(.22,.9,.28,1);
+  --slow:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--vault);
+  color:var(--ink);
+  font-family:var(--body);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden;height:100vh;}
+img{display:block;max-width:100%;}
+a{color:inherit;}
+
+/* Every image on this page is cut as a chapel window. */
+.arch{clip-path:url(#lancet);}
+
+/* ============================================================
+   1 · THE CHAPEL DOORS — minimal
+   Two dark leaves, one gold arch line, a monogram, and a
+   thread of light in the joint. Nothing else.
+   ============================================================ */
+#doors{
+  position:fixed; inset:0; z-index:100; cursor:pointer;
+  perspective:1700px; background:#05070E;
+  transition:opacity 1.5s ease .5s, filter 1.2s ease .45s;
+  will-change:opacity;
+}
+#doors.open{opacity:0; filter:brightness(1.5); pointer-events:none;}
+
+.door{
+  position:absolute; top:0; bottom:0; width:50.4%;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,0) 26%,rgba(0,0,0,0) 74%,rgba(0,0,0,.5)),
+    linear-gradient(180deg,#141A2E 0%,#0A0E1C 58%,#05070E 100%);
+  transition:transform 2s cubic-bezier(.6,0,.24,1), filter 2s ease;
+  will-change:transform;
+}
+.door.l{left:0; transform-origin:left center;}
+.door.r{right:0; transform-origin:right center;}
+#doors.open .door.l{transform:rotateY(-96deg); filter:brightness(.3);}
+#doors.open .door.r{transform:rotateY(96deg);  filter:brightness(.3);}
+
+/* a single arch line */
+.door .panel{
+  position:absolute; inset:11% 10%;
+  border:1px solid rgba(201,162,39,.34);
+}
+.door.l .panel{border-right-color:transparent; border-radius:240px 0 0 0;}
+.door.r .panel{border-left-color:transparent;  border-radius:0 240px 0 0;}
+
+.door-mono{
+  position:absolute; top:50%; transform:translateY(-50%);
+  font-family:var(--display); font-weight:400;
+  font-size:clamp(46px,9.5vw,92px); letter-spacing:.04em;
+  color:rgba(227,199,102,.82);
+}
+.door.l .door-mono{right:22px;}
+.door.r .door-mono{left:22px;}
+
+/* light in the joint */
+.seam{
+  position:absolute; left:50%; top:0; bottom:0; width:1px; margin-left:-.5px; z-index:3;
+  background:linear-gradient(180deg,transparent,rgba(255,247,224,.75) 24%,#FFF8E4 52%,rgba(227,199,102,.5) 86%,transparent);
+  box-shadow:0 0 22px 4px rgba(227,199,102,.22);
+  animation:seamGlow 4.6s ease-in-out infinite;
+}
+@keyframes seamGlow{0%,100%{opacity:.55}50%{opacity:1}}
+#doors.open .seam{opacity:0; transition:opacity .5s;}
+
+.door-hint{
+  position:absolute; left:50%; bottom:10vh; transform:translateX(-50%); z-index:4;
+  text-align:center; white-space:nowrap; color:var(--gold-soft);
+  font-family:var(--caps); font-size:10px; letter-spacing:.46em;
+  animation:breathe 3.2s ease-in-out infinite;
+}
+#doors.open .door-hint{opacity:0; transition:opacity .35s;}
+@keyframes breathe{0%,100%{opacity:.5}50%{opacity:.95}}
+
+@media(max-width:520px){
+  .door .panel{inset:13% 12%;}
+  .door.l .door-mono{right:14px;} .door.r .door-mono{left:14px;}
+  .door-hint{bottom:7vh;}
+}
+
+/* ============================================================
+   2 · THE NAVE — signature. A real 3-D aisle of gothic bays
+   receding toward the lit rose window at the end of the aisle.
+   ============================================================ */
+#hero{
+  position:relative; height:100svh; min-height:540px; overflow:hidden;
+  background:radial-gradient(58% 46% at 50% 42%,#111C42 0%,#080D22 44%,#03050D 100%);
+  perspective:1000px; perspective-origin:50% 44%;
+}
+.scene{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(-420px);}
+.is-lit .scene{animation:nave 3.6s cubic-bezier(.17,.72,.2,1) forwards;}
+@keyframes nave{to{transform:translateZ(0)}}
+.dolly{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;}
+
+.bay{
+  position:absolute; left:50%; top:50%;
+  width:186%; height:186%;
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+  /* the full transform (centring + depth) is set in script,
+     so it can never be half-overwritten */
+}
+.bay svg{width:100%;height:100%;display:block;}
+.bay .stone{fill:var(--stone,#05070F);}
+.bay .edge{
+  fill:none; stroke:rgba(227,199,102,var(--glow,.3));
+}
+
+/* The rose window sits outside the 3-D scene entirely. It only
+   ever needs to *look* distant, and keeping it flat means it
+   paints reliably and scales off the viewport at any size. */
+.rosewin{
+  position:absolute; left:50%; top:44%; z-index:1;
+  transform:translate(-50%,-50%);
+  width:min(21vw,26vh); aspect-ratio:1;   /* replaced by script */
+}
+.rosewin::before{
+  content:''; position:absolute; inset:-42%;
+  background:radial-gradient(circle,rgba(130,160,255,.24),rgba(227,199,102,.13) 34%,transparent 66%);
+}
+
+/* The nave floor. The far arches' lower edges land between 70%
+   and 91% of the viewport, so the floor goes fully opaque above
+   that and they disappear into the dark. */
+.floor{
+  position:absolute; left:0; right:0; bottom:0; height:30%; z-index:2;
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(3,5,13,0) 0%,
+    rgba(3,5,13,.30) 40%,
+    rgba(3,5,13,.75) 72%,
+    #03050D 100%);
+}
+
+.petal{opacity:0;transform-box:fill-box;transform-origin:center;}
+.is-lit .petal{animation:ignite 1.1s var(--ease) forwards;}
+@keyframes ignite{from{opacity:0;filter:brightness(2.6)}to{opacity:1;filter:brightness(1)}}
+.tracery{opacity:0;}
+.is-lit .tracery{opacity:1;transition:opacity 1.8s ease 2.2s;}
+
+/* shafts of light crossing the aisle */
+.beams{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:0;}
+.is-lit .beams{opacity:1;transition:opacity 2.6s ease 2s;}
+.beams i{
+  position:absolute; top:-40%; height:180%; width:clamp(110px,18vw,260px);
+  background:linear-gradient(90deg,transparent,rgba(227,199,102,.15) 50%,transparent);
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.95),rgba(0,0,0,.35) 55%,transparent 82%);
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.95),rgba(0,0,0,.35) 55%,transparent 82%);
+  transform-origin:top center;
+}
+.beams i:nth-child(1){left:6%;transform:rotate(16deg);animation:sway 11s ease-in-out infinite;}
+.beams i:nth-child(2){right:9%;transform:rotate(-14deg);animation:sway 14s ease-in-out infinite -4s;}
+.beams i:nth-child(3){left:44%;width:clamp(50px,8vw,120px);transform:rotate(4deg);opacity:.6;animation:sway 17s ease-in-out infinite -8s;}
+@keyframes sway{0%,100%{opacity:.55}50%{opacity:1}}
+
+.floorglow{
+  position:absolute; left:50%; bottom:-12%; width:120%; height:36%;
+  transform:translateX(-50%); pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(227,199,102,.20),rgba(42,74,155,.10) 38%,transparent 70%);
+  filter:blur(6px);
+}
+.vignette{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(0deg,rgba(3,5,13,.94) 0%,rgba(3,5,13,.6) 24%,transparent 54%),
+    radial-gradient(74% 62% at 50% 42%,transparent 38%,rgba(3,5,13,.78) 100%);
+}
+.mote{position:absolute;border-radius:50%;background:rgba(227,199,102,.6);pointer-events:none;opacity:0;}
+.is-lit .mote{animation:drift linear infinite;}
+@keyframes drift{
+  0%{transform:translateY(20px);opacity:0}
+  14%{opacity:.75} 86%{opacity:.45}
+  100%{transform:translateY(-68vh);opacity:0}
+}
+
+/* ---- the words, standing in the aisle ---- */
+.hero-inner{
+  position:absolute; left:50%; bottom:clamp(76px,13vh,132px);
+  transform:translateX(-50%); z-index:6;
+  width:min(880px,92vw); text-align:center;
+}
+.eyebrow{
+  font-family:var(--caps); font-size:clamp(9px,2.4vw,11px);
+  letter-spacing:.46em; color:var(--gold);
+  display:flex; align-items:center; justify-content:center; gap:16px;
+  opacity:0;
+}
+.eyebrow::before,.eyebrow::after{
+  content:''; height:1px; width:clamp(20px,9vw,70px);
+  background:linear-gradient(90deg,transparent,var(--gold));
+}
+.eyebrow::after{background:linear-gradient(90deg,var(--gold),transparent);}
+.is-lit .eyebrow{animation:riseIn 1.2s var(--slow) 2.4s forwards;}
+
+.names{margin:22px 0 0;}
+.name{
+  font-family:var(--script); font-weight:400;
+  font-size:clamp(44px,11vw,104px); line-height:1.1;
+  color:#F7F0DD;
+  text-shadow:0 0 26px rgba(201,162,39,.45), 0 2px 18px rgba(0,0,0,.8);
+  padding-bottom:.06em;
+}
+.name .ch{display:inline-block;opacity:0;transform:translateY(44px);}
+.is-lit .name .ch{animation:riseIn 1.1s var(--slow) forwards;}
+@keyframes riseIn{to{opacity:1;transform:none}}
+.amp{
+  font-family:var(--script); font-style:italic; color:var(--gold);
+  font-size:clamp(22px,5vw,38px); margin:4px 0; opacity:0;
+  display:flex; align-items:center; justify-content:center; gap:18px;
+}
+.amp::before,.amp::after{content:'';height:1px;width:clamp(30px,12vw,110px);
+  background:linear-gradient(90deg,transparent,rgba(201,162,39,.8));}
+.amp::after{background:linear-gradient(90deg,rgba(201,162,39,.8),transparent);}
+.is-lit .amp{animation:riseIn 1.2s var(--slow) 3.5s forwards;}
+
+.hero-date{
+  margin-top:26px; font-family:var(--caps); color:rgba(237,237,228,.8);
+  font-size:clamp(10px,2.8vw,13px); letter-spacing:.34em; opacity:0;
+}
+.hero-place{
+  margin-top:9px; font-family:var(--script); font-style:italic;
+  font-size:clamp(14px,3.8vw,19px); color:rgba(237,237,228,.5); opacity:0;
+}
+.is-lit .hero-date{animation:riseIn 1.1s var(--slow) 4.4s forwards;}
+.is-lit .hero-place{animation:riseIn 1.1s var(--slow) 4.6s forwards;}
+
+.scroll-cue{
+  position:absolute; bottom:26px; left:0; right:0; z-index:6;
+  text-align:center; opacity:0;
+  font-family:var(--caps); font-size:9px; letter-spacing:.4em; color:rgba(227,199,102,.7);
+  text-indent:.4em;   /* offsets the trailing letter-space */
+}
+.is-lit .scroll-cue{animation:fadeIn 1s ease 5.2s forwards;}
+@keyframes fadeIn{to{opacity:1}}
+.scroll-cue span{display:block;width:1px;height:44px;margin:12px auto 0;
+  background:linear-gradient(180deg,var(--gold),transparent);}
+.scroll-cue span::after{content:'';display:block;width:3px;height:3px;border-radius:50%;
+  background:var(--gold);margin-left:-1px;animation:fall 2.4s ease-in-out infinite;}
+@keyframes fall{0%{transform:translateY(0);opacity:0}30%{opacity:1}100%{transform:translateY(44px);opacity:0}}
+
+/* ============================================================
+   SHARED SECTION FURNITURE
+   ============================================================ */
+section{position:relative;}
+.stone{background:var(--limestone);color:var(--ink);}
+.stone::before{ /* faint plaster tooth */
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:radial-gradient(60% 50% at 50% 0%,rgba(12,20,48,.05),transparent 70%);
+}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(72px,11vw,128px) 22px;position:relative;z-index:2;}
+.label{
+  font-family:var(--caps);font-size:10px;letter-spacing:.44em;
+  color:var(--gold);text-align:center;
+}
+.stone .label{color:#9A7A17;}
+.head{
+  font-family:var(--display);font-weight:400;text-align:center;
+  font-size:clamp(30px,7vw,52px);margin:16px 0 0;letter-spacing:.01em;
+}
+.sub{
+  text-align:center;font-family:var(--script);font-style:italic;
+  font-size:clamp(15px,4vw,19px);color:var(--muted);margin:10px 0 0;
+}
+.dark .sub{color:rgba(237,237,228,.5);}
+.orn{
+  width:100%;max-width:220px;margin:22px auto 0;height:9px;
+  display:flex;align-items:center;gap:9px;
+}
+.orn i{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,162,39,.7));}
+.orn i+i{background:linear-gradient(90deg,rgba(201,162,39,.7),transparent);}
+.orn b{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1s var(--slow),transform 1.1s var(--slow);transition-delay:var(--d,0ms);}
+.reveal.in{opacity:1;transform:none;}
+
+/* ============================================================
+   3 · SCRIPTURE
+   ============================================================ */
+#verse{background:linear-gradient(180deg,#060A1A,var(--vault-2) 50%,#060A1A);color:var(--limestone);}
+#verse .wrap{max-width:760px;text-align:center;}
+.verse-text{
+  font-family:var(--script);font-weight:300;font-style:italic;
+  font-size:clamp(21px,5.4vw,36px);line-height:1.5;margin:0;
+  color:rgba(237,237,228,.92);
+}
+.verse-ref{margin-top:26px;font-family:var(--caps);font-size:10px;letter-spacing:.4em;color:var(--gold);}
+.dove{width:min(300px,64vw);margin:0 auto 40px;}
+.dove svg{display:block;overflow:visible;}
+.dove .halo{animation:haloPulse 6s ease-in-out infinite;transform-origin:center;}
+@keyframes haloPulse{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+.dove .rays{transform-origin:130px 100px;animation:spinSlow 120s linear infinite;}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+.dove .bird{animation:descend 7s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(255,240,200,.45));}
+@keyframes descend{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.dove .wing{animation:lift 5.2s ease-in-out infinite;}
+.dove .wl{transform-origin:120px 92px;}
+.dove .wr{transform-origin:140px 92px;animation-delay:-.15s;}
+@keyframes lift{0%,100%{transform:rotate(0deg)}50%{transform:rotate(2.6deg)}}
+.dove .wr{animation-name:liftR;}
+@keyframes liftR{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-2.6deg)}}
+
+/* ============================================================
+   4 · COUNTDOWN
+   ============================================================ */
+.clock{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(6px,2vw,20px);margin-top:52px;}
+.unit{text-align:center;padding:clamp(16px,3.4vw,26px) 6px;position:relative;background:rgba(255,255,255,.5);
+  border-top:1px solid rgba(201,162,39,.4);border-bottom:1px solid rgba(201,162,39,.4);}
+.unit+.unit::before{content:'';position:absolute;left:calc(-1 * clamp(3px,1vw,10px));top:22%;bottom:22%;width:1px;background:rgba(26,31,50,.14);}
+.unit .n{font-family:var(--display);font-size:clamp(30px,8.5vw,60px);line-height:1;color:var(--vault);display:block;}
+.unit .n.tick{animation:tick .5s var(--ease);}
+@keyframes tick{from{opacity:.25;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.unit .u{display:block;margin-top:10px;font-family:var(--caps);font-size:9px;letter-spacing:.32em;color:var(--muted);}
+.clock-note{text-align:center;margin-top:30px;font-family:var(--script);font-style:italic;font-size:18px;color:var(--muted);}
+
+/* ============================================================
+   7 · EVENTS
+   ============================================================ */
+.events{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3.6vw,34px);margin-top:58px;}
+.card{
+  position:relative;padding:clamp(30px,5vw,52px) clamp(20px,3.6vw,38px) clamp(34px,5vw,48px);
+  background:rgba(255,255,255,.58);
+  border:1px solid rgba(26,31,50,.1);
+  border-radius:180px 180px 4px 4px;
+  text-align:center;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:9px;border:1px solid rgba(201,162,39,.35);
+  border-radius:172px 172px 3px 3px;pointer-events:none;
+}
+.card-day{font-family:var(--caps);font-size:9px;letter-spacing:.4em;color:#9A7A17;margin-top:14px;}
+.card h3{font-family:var(--display);font-weight:400;font-size:clamp(26px,6vw,42px);margin:16px 0 6px;}
+.card .tag{font-family:var(--script);font-style:italic;color:var(--muted);font-size:17px;}
+.card dl{margin:30px 0 0;display:grid;gap:16px;}
+.card dt{font-family:var(--caps);font-size:8.5px;letter-spacing:.34em;color:var(--muted);}
+.card dd{margin:5px 0 0;font-family:var(--display);font-size:clamp(15px,3.4vw,18px);line-height:1.55;}
+.btn{
+  display:inline-block;margin-top:30px;padding:13px 30px;
+  font-family:var(--caps);font-size:9.5px;letter-spacing:.34em;
+  color:var(--vault);text-decoration:none;border:1px solid var(--gold);
+  position:relative;overflow:hidden;transition:color .5s;
+}
+.btn span{position:relative;z-index:2;}
+.btn::before{content:'';position:absolute;inset:0;background:var(--gold);
+  transform:translateY(101%);transition:transform .5s var(--ease);}
+.btn:hover{color:#fff;}
+.btn:hover::before{transform:translateY(0);}
+.bell{width:34px;height:34px;margin:0 auto;color:var(--gold);}
+.card:hover .bell{animation:ring 1.1s var(--ease);transform-origin:50% 12%;}
+@keyframes ring{0%,100%{transform:rotate(0)}20%{transform:rotate(13deg)}45%{transform:rotate(-10deg)}70%{transform:rotate(6deg)}}
+
+/* ============================================================
+   8 · VENUE
+   ============================================================ */
+#venue{background:var(--limestone);}
+.venues{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4.4vw,48px);margin-top:52px;}
+.vlabel{font-family:var(--caps);font-size:9px;letter-spacing:.42em;color:#9A7A17;margin:0;}
+.vplace h3{font-family:var(--display);font-weight:400;margin:13px 0 5px;
+  font-size:clamp(20px,4.4vw,29px);line-height:1.25;}
+.vsub{font-family:var(--script);font-style:italic;color:var(--muted);font-size:16px;margin:0;}
+.map{margin-top:22px;border:1px solid rgba(201,162,39,.45);padding:8px;background:#fff;}
+.map .frame{position:relative;width:100%;aspect-ratio:4/3;background:#dcdcd2;}
+.map iframe{position:relative;z-index:2;width:100%;height:100%;border:0;display:block;
+  filter:grayscale(.22) contrast(1.04);}
+.mapfallback{
+  position:absolute;inset:0;z-index:1;display:grid;place-content:center;gap:10px;
+  text-align:center;text-decoration:none;padding:18px;
+  background:
+    repeating-linear-gradient(0deg,rgba(26,31,50,.07) 0 1px,transparent 1px 26px),
+    repeating-linear-gradient(90deg,rgba(26,31,50,.07) 0 1px,transparent 1px 26px),
+    linear-gradient(160deg,#E7E7DC,#D8D8CC);
+}
+.mf-pin{
+  width:14px;height:14px;margin:0 auto 4px;border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);background:var(--rose);
+  box-shadow:0 0 0 4px rgba(168,50,74,.16);
+}
+.mf-name{font-family:var(--display);font-size:15px;color:var(--ink);line-height:1.4;}
+.mf-cta{font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;color:#9A7A17;}
+.vaddr{font-family:var(--display);font-size:15.5px;line-height:1.85;margin:20px 0 0;}
+.copy{
+  display:inline-block;margin-top:18px;background:none;cursor:pointer;text-decoration:none;
+  font-family:var(--caps);font-size:9.5px;letter-spacing:.32em;
+  padding:12px 26px;border:1px solid rgba(26,31,50,.28);color:var(--ink);transition:.4s;
+}
+.copy:hover{background:var(--vault);color:var(--limestone);border-color:var(--vault);}
+.vnote{
+  margin:clamp(38px,6vw,58px) auto 0;max-width:620px;text-align:center;
+  font-family:var(--script);font-style:italic;color:var(--muted);
+  font-size:clamp(15px,3.6vw,19px);line-height:1.65;
+}
+
+/* ============================================================
+   9 · FAMILIES
+   ============================================================ */
+#families{background:var(--limestone-2);}
+.fams{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:clamp(18px,4vw,52px);align-items:center;margin-top:56px;
+}
+.fam{text-align:center;}
+.fam-role{font-family:var(--caps);font-size:9px;letter-spacing:.42em;color:#9A7A17;margin:0;}
+.fam h3{
+  font-family:var(--script);font-weight:400;line-height:1.1;
+  font-size:clamp(30px,7vw,50px);margin:14px 0 8px;color:var(--vault);
+}
+.fam-of{font-family:var(--script);font-style:italic;color:var(--muted);font-size:16.5px;margin:0 0 20px;}
+.fam-parents{margin:0;font-family:var(--display);font-size:clamp(15px,3.6vw,18.5px);line-height:2;}
+.fam-parents span{display:block;}
+.fam-join{display:flex;flex-direction:column;align-items:center;gap:12px;height:100%;min-height:150px;}
+.fam-join i{flex:1;width:1px;background:linear-gradient(180deg,transparent,rgba(201,162,39,.6));}
+.fam-join i+i{background:linear-gradient(180deg,rgba(201,162,39,.6),transparent);}
+.fam-join b{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex:none;}
+
+@media(max-width:760px){
+  .fams{grid-template-columns:1fr;gap:6px;margin-top:44px;}
+  .fam-join{flex-direction:row;min-height:0;height:auto;padding:22px 0;width:60%;margin:0 auto;}
+  .fam-join i{width:auto;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(201,162,39,.6));}
+  .fam-join i+i{background:linear-gradient(90deg,rgba(201,162,39,.6),transparent);}
+}
+
+/* ============================================================
+  10 · TRAVEL
+   ============================================================ */
+#travel{background:linear-gradient(180deg,#060A1A,var(--vault) 44%,#070C1E);color:var(--limestone);}
+.ways{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,3.2vw,34px);margin-top:56px;}
+.way{
+  padding:clamp(24px,3.6vw,34px) clamp(18px,3vw,30px);
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(201,162,39,.20);
+}
+.way .ico{width:30px;height:30px;color:var(--gold);display:block;}
+.way h3{
+  font-family:var(--caps);font-weight:400;font-size:9.5px;letter-spacing:.4em;
+  color:var(--gold);margin:18px 0 20px;
+}
+.way dl{margin:0;display:grid;gap:16px;}
+.way dt{font-family:var(--display);font-size:16.5px;color:var(--limestone);line-height:1.35;}
+.way dd{margin:5px 0 0;font-size:13px;line-height:1.65;color:rgba(237,237,228,.58);}
+.way .far{color:rgba(227,199,102,.8);}
+.tnote{
+  margin:clamp(38px,6vw,54px) auto 0;max-width:600px;text-align:center;
+  font-family:var(--script);font-style:italic;color:rgba(237,237,228,.6);
+  font-size:clamp(15px,3.6vw,19px);line-height:1.7;
+}
+
+/* ============================================================
+  11 · FOOTER
+   ============================================================ */
+#end{background:radial-gradient(100% 80% at 50% 100%,var(--vault-2),#060A1A);color:var(--limestone);text-align:center;}
+.endmark{display:block;width:clamp(26px,6vw,38px);height:auto;margin:0 auto;
+  filter:drop-shadow(0 0 26px rgba(201,162,39,.4));}
+.closing-line{margin-top:20px;font-family:var(--caps);font-size:10px;letter-spacing:.32em;color:var(--gold);}
+.blessing{font-family:var(--script);font-style:italic;font-size:clamp(17px,4.4vw,22px);
+  line-height:1.75;max-width:520px;margin:34px auto 0;color:rgba(237,237,228,.72);}
+.couple-end{
+  font-family:var(--script);font-size:clamp(34px,9vw,64px);
+  margin-top:44px;color:var(--limestone);line-height:1.15;
+}
+.wed{
+  font-family:var(--caps);font-size:.24em;letter-spacing:.34em;
+  color:var(--gold);vertical-align:.34em;margin:0 .5em 0 .62em;
+  text-transform:uppercase;
+}
+.credit{padding:26px 20px 34px;font-size:10px;letter-spacing:.2em;color:rgba(237,237,228,.3);font-family:var(--caps);}
+
+/* ============================================================
+   NAV + MUSIC
+   ============================================================ */
+#nav{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(140%);
+  z-index:60;display:flex;gap:2px;padding:6px;
+  background:rgba(12,20,48,.86);backdrop-filter:blur(14px);
+  border:1px solid rgba(201,162,39,.32);border-radius:100px;
+  transition:transform 1s var(--slow);
+}
+#nav.show{transform:translateX(-50%) translateY(0);}
+#nav a{
+  padding:9px 14px;border-radius:100px;text-decoration:none;
+  font-family:var(--caps);font-size:8.5px;letter-spacing:.26em;
+  color:rgba(237,237,228,.62);transition:.35s;white-space:nowrap;
+}
+#nav a:hover,#nav a.active{color:var(--vault);background:var(--gold-soft);}
+#music{
+  position:fixed;top:16px;right:16px;z-index:60;width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
+  background:rgba(12,20,48,.8);border:1px solid rgba(201,162,39,.4);backdrop-filter:blur(10px);
+  transition:opacity .8s ease,transform .4s;
+}
+#music.show{opacity:1;pointer-events:auto;}
+#music:hover{transform:scale(1.08);}
+#music i{display:block;width:2px;height:8px;background:var(--gold-soft);margin:0 1px;float:left;border-radius:2px;}
+#music.playing i{animation:eq .9s ease-in-out infinite;}
+#music i:nth-child(2){animation-delay:.15s}#music i:nth-child(3){animation-delay:.3s}
+@keyframes eq{0%,100%{height:6px}50%{height:16px}}
+.eqrow{display:flex;align-items:center;gap:2px;height:16px;}
+
+.toast{
+  position:fixed;left:50%;bottom:88px;transform:translate(-50%,20px);
+  background:var(--vault);color:var(--limestone);padding:12px 24px;z-index:70;
+  font-family:var(--caps);font-size:9.5px;letter-spacing:.28em;
+  border:1px solid rgba(201,162,39,.4);opacity:0;pointer-events:none;transition:.45s var(--ease);
+}
+.toast.show{opacity:1;transform:translate(-50%,0);}
+
+/* ============================================================
+   RESPONSIVE
+   Breakpoints follow the real device families rather than
+   round numbers: tablets, large phones, standard phones,
+   compact phones, and the very short landscape case.
+   ============================================================ */
+
+/* ---- tablets & small laptops (iPad portrait, 768–1024) ---- */
+@media(max-width:1024px){
+  .wrap{padding:clamp(60px,10vw,104px) 24px;}
+  .head{font-size:clamp(28px,6vw,44px);}
+}
+
+/* ---- everything below a tablet: single column ---- */
+@media(max-width:880px){
+  .venues{grid-template-columns:1fr;}
+  .events{grid-template-columns:1fr;}
+  .ways{grid-template-columns:1fr;}
+  #nav a{padding:8px 10px;font-size:7.5px;letter-spacing:.2em;}
+}
+
+/* ---- large phones (Pro Max / Ultra, 431–520) ---- */
+@media(max-width:520px){
+  .wrap{padding:clamp(54px,13vw,80px) 20px;}
+  .label{font-size:9px;letter-spacing:.36em;}
+  .head{font-size:clamp(26px,7.4vw,34px);}
+  .sub{font-size:16px;}
+  .orn{max-width:170px;}
+
+  .name{font-size:clamp(42px,13.5vw,62px);}
+  .amp{font-size:24px;}
+  .amp::before,.amp::after{width:clamp(24px,10vw,54px);}
+  .hero-inner{bottom:clamp(72px,12vh,104px);width:94vw;}
+  .hero-date{font-size:11px;letter-spacing:.24em;margin-top:20px;}
+  .hero-place{font-size:15px;}
+
+  .verse-text{font-size:clamp(20px,5.8vw,26px);}
+  .dove{width:min(230px,62vw);margin-bottom:32px;}
+
+  .card{padding:32px 20px 36px;border-radius:150px 150px 4px 4px;}
+  .card::before{border-radius:143px 143px 3px 3px;}
+  .card dl{gap:14px;}
+
+  .way{padding:24px 20px;}
+  .map{padding:6px;}
+  .map .frame{aspect-ratio:1/1;}
+  .vaddr{font-size:15px;}
+
+  .couple-end{font-size:clamp(30px,10vw,46px);}
+  .blessing{font-size:16.5px;}
+
+  #nav{bottom:14px;padding:5px;}
+  #nav a{padding:8px 9px;font-size:7px;letter-spacing:.16em;}
+  #music{width:38px;height:38px;top:12px;right:12px;}
+}
+
+/* ---- standard phones (iPhone 14/15/16, Pixel, 391–430) ---- */
+@media(max-width:430px){
+  .name{font-size:clamp(40px,13vw,56px);}
+  .clock{gap:5px;}
+  .unit{padding:15px 3px;}
+  .unit .n{font-size:clamp(26px,8vw,40px);}
+  .unit .u{font-size:8px;letter-spacing:.22em;}
+  .card h3{font-size:clamp(24px,7vw,32px);}
+  .way dt{font-size:15.5px;}
+  .way dd{font-size:12.5px;}
+}
+
+/* ---- compact phones (iPhone SE / Mini, 320–390) ---- */
+@media(max-width:390px){
+  .wrap{padding:48px 16px;}
+  .name{font-size:clamp(36px,12.5vw,48px);}
+  .amp{font-size:21px;}
+  .hero-inner{bottom:64px;}
+  .hero-place{font-size:14px;}
+  .verse-text{font-size:19px;}
+  .dove{width:min(190px,58vw);}
+  .clock{gap:3px;}
+  .unit{padding:13px 1px;}
+  .unit .n{font-size:24px;}
+  .unit .u{font-size:7px;letter-spacing:.16em;}
+  .card{padding:26px 15px 30px;}
+  .card dd{font-size:14.5px;}
+  .btn,.copy{padding:11px 20px;font-size:8.5px;letter-spacing:.24em;}
+  #nav a{padding:7px 7px;font-size:6.5px;letter-spacing:.12em;}
+  .door-mono{font-size:clamp(38px,12vw,54px);}
+  .door .panel{inset:15% 13%;}
+}
+
+/* ---- very narrow (320px, folded devices) ---- */
+@media(max-width:340px){
+  .name{font-size:34px;}
+  .head{font-size:24px;}
+  .unit .n{font-size:21px;}
+  #nav{gap:0;}
+  #nav a{padding:7px 5px;letter-spacing:.08em;}
+}
+
+/* ---- phones in landscape: very little height to work with ---- */
+@media(max-height:520px) and (orientation:landscape){
+  #hero{min-height:420px;}
+  .name{font-size:clamp(30px,9vh,52px);}
+  .amp{font-size:18px;margin:0;}
+  .eyebrow{font-size:8px;letter-spacing:.34em;}
+  .hero-inner{bottom:44px;}
+  .hero-date{margin-top:12px;font-size:9.5px;}
+  .hero-place{font-size:13px;margin-top:6px;}
+  .scroll-cue{display:none;}
+  .door-hint{bottom:5vh;}
+  .wrap{padding:56px 22px;}
+  .dove{width:150px;margin-bottom:22px;}
+}
+
+/* ---- taller-than-usual phones: give the aisle more room ---- */
+@media(max-width:520px) and (min-height:820px){
+  .hero-inner{bottom:clamp(96px,14vh,140px);}
+}
+
+/* ---- wide, short screens (laptops): keep words clear of the aisle ---- */
+@media(min-width:900px) and (max-height:820px){
+  .name{font-size:clamp(44px,7.4vh,88px);}
+  .hero-inner{bottom:clamp(64px,9vh,96px);}
+  .amp{font-size:clamp(20px,3vh,32px);}
+  .hero-date{margin-top:18px;}
+  .scroll-cue span{height:34px;}
+}
+@media(min-width:1500px){
+  .hero-inner{width:min(1000px,86vw);}
+}
+
+/* ---- touch devices: no hover states to inherit ---- */
+@media(hover:none){
+  .btn:hover::before{transform:translateY(101%);}
+  .btn:active::before{transform:translateY(0);}
+  .btn:active{color:#fff;}
+  .copy:active{background:var(--vault);color:var(--limestone);border-color:var(--vault);}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  .reveal{opacity:1;transform:none;}
+  .petal,.tracery,.hero-date,.hero-place,.amp,.name .ch,.scroll-cue{opacity:1!important;transform:none!important;}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- lancet arch mask used by every image on the page -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="lancet" clipPathUnits="objectBoundingBox">
+      <path d="M0,1 L0,0.40 Q0.06,0.09 0.5,0 Q0.94,0.09 1,0.40 L1,1 Z"/>
+    </clipPath>
+    <clipPath id="lancetL" clipPathUnits="objectBoundingBox">
+      <path d="M0,1 L0,0.40 Q0.12,0.09 1,0 L1,1 Z"/>
+    </clipPath>
+    <clipPath id="lancetR" clipPathUnits="objectBoundingBox">
+      <path d="M1,1 L1,0.40 Q0.88,0.09 0,0 L0,1 Z"/>
+    </clipPath>
+
+
+  </defs>
+</svg>
+
+<!-- ============ ENTRY · THE CHAPEL DOORS ============ -->
+<div id="doors" role="button" tabindex="0" aria-label="Open the invitation">
+  <div class="door l"><div class="panel"></div><div class="door-mono">B</div></div>
+  <div class="door r"><div class="panel"></div><div class="door-mono">A</div></div>
+  <div class="seam"></div>
+  <div class="door-hint">TAP TO OPEN</div>
+</div>
+
+<!-- ============ HERO · THE NAVE ============ -->
+<header id="hero">
+  <div class="scene" aria-hidden="true">
+    <div class="dolly" id="dolly"></div>
+  </div>
+
+  <div class="rosewin" aria-hidden="true">
+    <svg id="rose" viewBox="0 0 600 600" width="100%" height="100%"></svg>
+  </div>
+  <div class="floor" aria-hidden="true"></div>
+  <div class="beams" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="floorglow" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <p class="eyebrow">THE HOLY MATRIMONY OF</p>
+    <div class="names">
+      <div class="name" data-split data-delay="2700">Brighten</div>
+      <div class="amp">and</div>
+      <div class="name" data-split data-delay="3900">Anisha</div>
+    </div>
+    <p class="hero-date" id="heroDate">DATE TO BE ANNOUNCED</p>
+    <p class="hero-place" id="heroPlace">The church &amp; venue will be shared shortly</p>
+  </div>
+
+  <div class="scroll-cue">SCROLL<span></span></div>
+</header>
+
+<!-- ============ SCRIPTURE ============ -->
+<section id="verse" class="dark">
+  <div class="wrap">
+    <div class="dove reveal" aria-hidden="true">
+      <svg viewBox="0 0 260 190" width="100%" height="100%">
+        <defs>
+          <radialGradient id="halo" cx="50%" cy="52%">
+            <stop offset="0%" stop-color="#FFF6DA" stop-opacity=".55"/>
+            <stop offset="42%" stop-color="#E3C766" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#E3C766" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="feather" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="58%" stop-color="#F6EEDA"/>
+            <stop offset="100%" stop-color="#DCC79B"/>
+          </linearGradient>
+        </defs>
+
+        <circle class="halo" cx="130" cy="100" r="86" fill="url(#halo)"/>
+        <g class="rays" fill="rgba(227,199,102,.20)"></g>
+
+        <g class="bird" fill="url(#feather)">
+          <!-- tail feathers, lifted -->
+          <path d="M130,66 L112,10 L122,60 Z"/>
+          <path d="M130,64 L130,2 L137,60 Z"/>
+          <path d="M130,66 L148,10 L138,60 Z"/>
+          <!-- wing, left -->
+          <g class="wing wl">
+            <path d="M120,86 C94,80 58,66 26,40 C44,72 78,98 116,106 Z"/>
+            <path d="M112,96 C88,92 60,80 38,62" stroke="rgba(150,124,68,.45)" stroke-width="1.2" fill="none"/>
+            <path d="M114,90 C92,84 66,72 46,54" stroke="rgba(150,124,68,.30)" stroke-width="1" fill="none"/>
+          </g>
+          <!-- wing, right -->
+          <g class="wing wr">
+            <path d="M140,86 C166,80 202,66 234,40 C216,72 182,98 144,106 Z"/>
+            <path d="M148,96 C172,92 200,80 222,62" stroke="rgba(150,124,68,.45)" stroke-width="1.2" fill="none"/>
+            <path d="M146,90 C168,84 194,72 214,54" stroke="rgba(150,124,68,.30)" stroke-width="1" fill="none"/>
+          </g>
+          <!-- body, descending -->
+          <path d="M130,58 C143,80 145,106 137,124 C134,137 126,137 123,124 C115,106 117,80 130,58 Z"/>
+          <circle cx="130" cy="136" r="12.5"/>
+          <path d="M125.5,146 L130,160 L134.5,146 Z"/>
+        </g>
+      </svg>
+    </div>
+
+    <p class="verse-text reveal" style="--d:120ms">
+      “Therefore what God has joined together,<br>let no one separate.”
+    </p>
+    <p class="verse-ref reveal" style="--d:280ms">MARK 10 : 9</p>
+  </div>
+</section>
+
+<!-- ============ COUNTDOWN ============ -->
+<section id="countdown" class="stone">
+  <div class="wrap">
+    <p class="label reveal">SAVE THE DATE</p>
+    <h2 class="head reveal" style="--d:80ms">Counting the Days</h2>
+    <div class="orn reveal" style="--d:140ms"><i></i><b></b><i></i></div>
+    <div class="clock reveal" style="--d:200ms">
+      <div class="unit"><span class="n" id="cd-d">00</span><span class="u">DAYS</span></div>
+      <div class="unit"><span class="n" id="cd-h">00</span><span class="u">HOURS</span></div>
+      <div class="unit"><span class="n" id="cd-m">00</span><span class="u">MINUTES</span></div>
+      <div class="unit"><span class="n" id="cd-s">00</span><span class="u">SECONDS</span></div>
+    </div>
+    <p class="clock-note reveal" style="--d:280ms" id="clockNote">until we say “I do”</p>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section id="events" class="stone">
+  <div class="wrap">
+    <p class="label reveal">THE ORDER OF THE DAY</p>
+    <h2 class="head reveal" style="--d:80ms">Celebrations</h2>
+    <div class="orn reveal" style="--d:140ms"><i></i><b></b><i></i></div>
+
+    <div class="events">
+      <article class="card reveal" style="--d:200ms">
+        <svg class="bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+          <path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.5-2.5 6.5h16c-1-1-2.5-2.5-2.5-6.5A5.5 5.5 0 0 0 12 3Z"/>
+          <path d="M10 18a2 2 0 0 0 4 0"/><path d="M12 3V1.5"/>
+        </svg>
+        <p class="card-day">THE CEREMONY</p>
+        <h3>Holy Matrimony</h3>
+        <p class="tag">Where two become one</p>
+        <dl>
+          <div><dt>DATE</dt><dd id="ev1-date">To be confirmed</dd></div>
+          <div><dt>TIME</dt><dd id="ev1-time">To be confirmed</dd></div>
+          <div><dt>CHURCH</dt><dd id="ev1-place">To be confirmed</dd></div>
+        </dl>
+        <a class="btn" id="ev1-link" href="#venue" target="_blank" rel="noopener"><span>OPEN IN MAPS</span></a>
+      </article>
+
+      <article class="card reveal" style="--d:320ms">
+        <svg class="bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+          <path d="M7 3h10l-1.2 5.2A4 4 0 0 1 12 11a4 4 0 0 1-3.8-2.8Z"/>
+          <path d="M12 11v7"/><path d="M8.5 21h7"/><path d="M8.5 21c0-1.7 1.6-3 3.5-3s3.5 1.3 3.5 3"/>
+        </svg>
+        <p class="card-day">THE CELEBRATION</p>
+        <h3>Reception</h3>
+        <p class="tag">Dinner, blessings &amp; joy</p>
+        <dl>
+          <div><dt>DATE</dt><dd id="ev2-date">To be confirmed</dd></div>
+          <div><dt>TIME</dt><dd id="ev2-time">To be confirmed</dd></div>
+          <div><dt>VENUE</dt><dd id="ev2-place">To be confirmed</dd></div>
+        </dl>
+        <a class="btn" id="ev2-link" href="#venue" target="_blank" rel="noopener"><span>OPEN IN MAPS</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAMILIES ============ -->
+<section id="families" class="stone">
+  <div class="wrap">
+    <p class="label reveal">WITH THE BLESSING OF OUR FAMILIES</p>
+    <h2 class="head reveal" style="--d:80ms">Two Families, One Home</h2>
+    <div class="orn reveal" style="--d:140ms"><i></i><b></b><i></i></div>
+
+    <div class="fams">
+      <div class="fam reveal" style="--d:200ms">
+        <p class="fam-role">THE GROOM</p>
+        <h3 id="g-name">Brighten</h3>
+        <p class="fam-of" id="g-role">Beloved son of</p>
+        <p class="fam-parents"><span id="g-father"></span><span id="g-mother"></span></p>
+      </div>
+
+      <div class="fam-join reveal" style="--d:260ms" aria-hidden="true">
+        <i></i><b></b><i></i>
+      </div>
+
+      <div class="fam reveal" style="--d:320ms">
+        <p class="fam-role">THE BRIDE</p>
+        <h3 id="b-name">Anisha</h3>
+        <p class="fam-of" id="b-role">Beloved daughter of</p>
+        <p class="fam-parents"><span id="b-father"></span><span id="b-mother"></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VENUE ============ -->
+<section id="venue">
+  <div class="wrap">
+    <p class="label reveal">LOCATION &amp; TRAVEL</p>
+    <h2 class="head reveal" style="--d:80ms">Finding Your Way</h2>
+    <div class="orn reveal" style="--d:140ms"><i></i><b></b><i></i></div>
+
+    <div class="venues">
+      <div class="vplace reveal" style="--d:200ms">
+        <p class="vlabel" id="v1-label">THE CEREMONY</p>
+        <h3 id="v1-name">Our Lady of Sorrows Church</h3>
+        <p class="vsub" id="v1-area">Konnakuzhivilai</p>
+        <div class="map"><div class="frame" id="v1-map"></div></div>
+        <p class="vaddr" id="v1-addr"></p>
+        <a class="copy" id="v1-link" href="#" target="_blank" rel="noopener">OPEN IN MAPS</a>
+      </div>
+
+      <div class="vplace reveal" style="--d:320ms">
+        <p class="vlabel" id="v2-label">THE CELEBRATION</p>
+        <h3 id="v2-name">Pani Matha Kalyana Mandapam</h3>
+        <p class="vsub" id="v2-area">Kallikulam</p>
+        <div class="map"><div class="frame" id="v2-map"></div></div>
+        <p class="vaddr" id="v2-addr"></p>
+        <a class="copy" id="v2-link" href="#" target="_blank" rel="noopener">OPEN IN MAPS</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TRAVEL ============ -->
+<section id="travel" class="dark">
+  <div class="wrap">
+    <p class="label reveal">GETTING HERE</p>
+    <h2 class="head reveal" style="--d:80ms;color:var(--limestone)">Travel Notes</h2>
+    <div class="orn reveal" style="--d:140ms"><i></i><b></b><i></i></div>
+
+    <div class="ways">
+      <div class="way reveal" style="--d:200ms">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="13" rx="3"/><path d="M6 10h12"/><path d="M9.5 19.5 7 22"/><path d="M14.5 19.5 17 22"/><circle cx="9.5" cy="13" r=".6"/><circle cx="14.5" cy="13" r=".6"/></svg>
+        <h3>BY TRAIN</h3>
+        <dl>
+          <div><dt>Nagercoil Junction</dt>
+            <dd><span class="far">approx. 15 km</span> from the church. The main hub for trains from Chennai, Bengaluru and Thiruvananthapuram.</dd></div>
+          <div><dt>Valliyur</dt>
+            <dd><span class="far">approx. 7 km</span> from the reception hall, on the Tirunelveli&ndash;Nagercoil line.</dd></div>
+        </dl>
+      </div>
+
+      <div class="way reveal" style="--d:280ms">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c.9 0 1.4 1 1.4 2.2v4.1l7.1 4.1v2l-7.1-2.1v4l2.6 1.9v1.8L12 19.3l-4 1.2v-1.8l2.6-1.9v-4L3.5 14.9v-2l7.1-4.1V4.7C10.6 3.5 11.1 2.5 12 2.5Z"/></svg>
+        <h3>BY AIR</h3>
+        <dl>
+          <div><dt>Thiruvananthapuram International</dt>
+            <dd><span class="far">approx. 75 km</span> from the church. The closest airport, with taxis available at the terminal.</dd></div>
+          <div><dt>Thoothukudi</dt>
+            <dd><span class="far">approx. 80 km</span> from the reception hall, for domestic arrivals.</dd></div>
+        </dl>
+      </div>
+
+      <div class="way reveal" style="--d:360ms">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h16"/><path d="M5.5 16 7 9.5h10L18.5 16"/><path d="M4 16v2.5h3V16"/><path d="M17 16v2.5h3V16"/><circle cx="8" cy="16" r="1.4"/><circle cx="16" cy="16" r="1.4"/></svg>
+        <h3>BY ROAD</h3>
+        <dl>
+          <div><dt>To the church</dt>
+            <dd>On State Highway 91 at Konnakuzhivilai, a short drive from Nagercoil.</dd></div>
+          <div><dt>To the reception</dt>
+            <dd>Kallikulam sits on the Valliyur&ndash;Thiruchendur road. The Kallikulam bus stop is minutes from the hall.</dd></div>
+        </dl>
+      </div>
+
+      <div class="way reveal" style="--d:440ms">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.5-6.1 6.5-11a6.5 6.5 0 0 0-13 0C5.5 14.9 12 21 12 21Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        <h3>BETWEEN THE TWO</h3>
+        <dl>
+          <div><dt>Church to reception hall</dt>
+            <dd><span class="far">approx. 50 km &middot; around 1 hour 15 minutes</span> by road. There is a long gap between the morning ceremony and the evening reception, so there is no need to rush.</dd></div>
+          <div><dt>Parking</dt>
+            <dd>Available at both the church and the hall.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <p class="tnote reveal">Travelling from far? Do let us know &mdash; we would love to help you find your way.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="end">
+  <div class="wrap">
+    <svg class="endmark reveal" viewBox="0 0 40 56" aria-hidden="true">
+      <rect x="18" y="0" width="4" height="56" rx="1.4" fill="url(#endg)"/>
+      <rect x="4" y="15" width="32" height="4" rx="1.4" fill="url(#endg)"/>
+      <defs>
+        <linearGradient id="endg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F0DA92"/>
+          <stop offset="100%" stop-color="#9A7A17"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="orn reveal" style="--d:140ms"><i></i><b></b><i></i></div>
+
+    <p class="blessing reveal" style="--d:220ms">
+      We look forward to celebrating with you.
+    </p>
+    <p class="couple-end reveal" style="--d:400ms">Brighten<span class="wed">weds</span>Anisha</p>
+    <p class="closing-line reveal" style="--d:460ms" id="closingLine"></p>
+  </div>
+  <p class="credit">WITH LOVE AND GRATITUDE</p>
+</footer>
+
+<nav id="nav">
+  <a href="#hero">HOME</a>
+  <a href="#countdown">COUNTDOWN</a>
+  <a href="#events">EVENTS</a>
+  <a href="#venue">VENUE</a>
+  <a href="#travel">TRAVEL</a>
+</nav>
+
+<button id="music" aria-label="Play music">
+  <span class="eqrow"><i></i><i></i><i></i></span>
+</button>
+<audio id="audio" loop preload="none" src="assets/song.mp3"></audio>
+
+<script>
+/* ============================================================
+   CONFIG — everything you'll want to change lives right here.
+   ============================================================ */
+const CONFIG = {
+  weddingDate : '2026-09-17T10:15:00',
+  heroDate    : 'THURSDAY · 17 SEPTEMBER 2026',
+  heroPlace   : 'Konnakuzhivilai & Kallikulam, Tamil Nadu',
+
+  ceremony : {
+    label   : 'THE CEREMONY',
+    name    : 'Our Lady of Sorrows Church',
+    area    : 'Konnakuzhivilai',
+    date    : 'Thursday, 17 September 2026',
+    time    : '10:15 AM',
+    address : 'SH 91, Konnakuzhivilai,\nTamil Nadu 629003',
+    embed   : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4427.109177848633!2d77.35676900000001!3d8.210832000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04f9ecbdeae09f%3A0xe4cf0ca72bfbf167!2sOur%20Lady%20of%20Sorrows%20Church%2C%20Konnakuzhivilai.!5e1!3m2!1sen!2sin!4v1787643704585!5m2!1sen!2sin',
+    maps    : 'https://maps.app.goo.gl/7ik2hfcocaoGaBcp6'
+  },
+
+  reception : {
+    label   : 'THE CELEBRATION',
+    name    : 'Pani Matha Kalyana Mandapam',
+    area    : 'Kallikulam',
+    date    : 'Thursday, 17 September 2026',
+    time    : '7:00 PM onwards',
+    address : 'Kallikulam,\nTamil Nadu 627113',
+    embed   : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4425.532990063498!2d77.6615764!3d8.3510141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0463dc65c00001%3A0x32d0080d842c0628!2sPani%20Matha%20Kalyana%20Mandapam!5e1!3m2!1sen!2sin!4v1787643420011!5m2!1sen!2sin',
+    maps    : 'https://maps.app.goo.gl/oEhjyKvCGgy5kaAM8'
+  },
+
+  closingLine: '17 SEPTEMBER 2026 · KONNAKUZHIVILAI',
+
+  /* ---- fill these in when you have them ---- */
+  families : {
+    groom : { name:'Brighten M', role:'Beloved son of',
+              father:'Mr. S. Mahilan',
+              mother:'Mrs. M. Anna Arockia Vasumathi' },
+    bride : { name:'Anisha Mary Roy X', role:'Beloved daughter of',
+              father:'Mr. T. Xavier Thomas',
+              mother:'Mrs. B. Shoba Xavier' }
+  }
+};
+
+/* ---------- fill in text from CONFIG ---------- */
+const set=(id,v)=>{const el=document.getElementById(id); if(el&&v) el.textContent=v;};
+const link=(id,v)=>{const el=document.getElementById(id); if(el&&v) el.href=v;};
+
+set('heroDate',CONFIG.heroDate); set('heroPlace',CONFIG.heroPlace);
+set('closingLine',CONFIG.closingLine);
+
+[['g',CONFIG.families.groom],['b',CONFIG.families.bride]].forEach(([k,c])=>{
+  set(k+'-name',c.name); set(k+'-role',c.role);
+  set(k+'-father',c.father); set(k+'-mother',c.mother);
+});
+
+[['ev1',CONFIG.ceremony],['ev2',CONFIG.reception]].forEach(([k,c])=>{
+  set(k+'-date',c.date); set(k+'-time',c.time);
+  set(k+'-place',c.name+', '+c.area);
+  link(k+'-link',c.maps);
+});
+
+[['v1',CONFIG.ceremony],['v2',CONFIG.reception]].forEach(([k,c])=>{
+  set(k+'-label',c.label); set(k+'-name',c.name); set(k+'-area',c.area);
+  const ad=document.getElementById(k+'-addr');
+  if(ad) ad.innerHTML=c.address.split('\n').join('<br>');
+  link(k+'-link',c.maps);
+  const fr=document.getElementById(k+'-map');
+  if(fr&&c.embed) fr.innerHTML=
+    '<a class="mapfallback" href="'+c.maps+'" target="_blank" rel="noopener">'+
+      '<span class="mf-pin"></span>'+
+      '<span class="mf-name">'+c.name+'</span>'+
+      '<span class="mf-cta">OPEN IN GOOGLE MAPS</span>'+
+    '</a>'+
+    '<iframe src="'+c.embed+'" loading="lazy" allowfullscreen '+
+    'title="'+c.name+' on the map" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+});
+
+/* ============================================================
+   THE NAVE — bays of gothic arches in real 3-D depth.
+   The viewBox is derived from the viewport's own aspect ratio,
+   so the arch keeps its proportions and never gets cropped;
+   the stone simply runs wider on a wide screen.
+   ============================================================ */
+(function nave(){
+  const dolly=document.getElementById('dolly');
+  const rose=document.querySelector('.rosewin');
+  const GAP=620, FIRST=-280;
+  const MINSTEP=18;   /* smallest gap between arch apexes, in css px */
+  const MAXBAYS=8;
+  const BOX=1.86;     /* must match .bay width/height in the CSS */
+  const ORIGIN=44;    /* must match #hero perspective-origin */
+  const STROKE=1.7;   /* target on-screen arch line width, in css px */
+  let BAYS=8;
+  const arcR=(span,rise)=>(rise*rise+span*span/4)/span;
+
+  function build(){
+    dolly.querySelectorAll('.bay').forEach(b=>b.remove());
+
+    const ar=window.innerWidth/Math.max(1,window.innerHeight);
+    const H=1000, W=Math.round(H*ar);
+
+    /* apex near the top, springing low, capped so a wide screen
+       still keeps a pointed arch rather than a flattened one */
+    /* The bay box has the same aspect as the viewport, so a viewBox
+       unit is square. That means an arch keeps its exact shape on
+       any screen as long as its rise stays a fixed multiple of its
+       span. Previously the rise was pinned at 920 units while the
+       span followed the screen width, so a narrow screen stretched
+       the arch into a needle (rise/span 3.2 on a phone against 0.8
+       on a desktop). Now the ratio is constant and only the number
+       of arches changes with the screen. */
+    const RISE=1.55;
+    const openW=Math.min(Math.round(W*0.62),581);
+    const rise=Math.round(openW*RISE);
+    const apex=40, ys=apex+rise, mid=Math.round(W/2);
+    const x0=mid-Math.round(openW/2), x1=mid+Math.round(openW/2);
+    const r=arcR(openW,ys-apex).toFixed(1);
+
+    const arc=' L'+x0+','+ys+' A'+r+','+r+' 0 0 1 '+mid+','+apex+
+              ' A'+r+','+r+' 0 0 1 '+x1+','+ys+' L'+x1+','+H;
+    const hole='M'+x0+','+H+arc+' Z';
+    const edge='M'+x0+','+H+arc;
+    const wall='M0,0 H'+W+' V'+H+' H0 Z ';
+
+    /* Perspective puts each arch's apex at a fixed fraction of the
+       viewport, so the depth spacing is constant everywhere. What
+       changes with screen size is how many arches still land far
+       enough apart to read as separate. Add arches until the next
+       one would sit less than MINSTEP from the last. */
+    const vhPx=window.innerHeight;
+    const apexPct=(50-BOX*50)+(apex/1000)*BOX*100;
+    const perScale=Math.abs(apexPct-ORIGIN)/100*vhPx;
+    const scaleAt=n=>1000/(1000-(FIRST-n*GAP));
+    let n=1;
+    while(n<MAXBAYS && (scaleAt(n-1)-scaleAt(n))*perScale>=MINSTEP) n++;
+    BAYS=Math.max(4,n);
+
+    /* One viewBox unit is this many css px once the box is scaled. */
+    const unit=BOX*vhPx/1000;
+
+    const frag=document.createDocumentFragment();
+    for(let i=BAYS-1;i>=0;i--){
+      const t=i/(BAYS-1);
+      const sc=1000/(1000-(FIRST-i*GAP));
+      /* Perspective shrinks the far arches, and a fixed stroke width
+         falls below one device pixel and aliases into broken lines.
+         Scale the stroke inversely so every arch draws the same
+         width on screen. */
+      const sw=(STROKE/(unit*sc)).toFixed(2);
+      const bay=document.createElement('div');
+      bay.className='bay';
+      bay.style.transform='translate(-50%,-50%) translateZ('+(FIRST-i*GAP)+'px)';
+      bay.style.setProperty('--glow',(0.18+t*0.62).toFixed(2));
+      bay.style.setProperty('--stone','hsl(226 '+(18+t*16)+'% '+(3.5+t*6.5)+'%)');
+      bay.innerHTML=
+        '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid slice">'+
+          '<path class="stone" fill-rule="evenodd" d="'+wall+hole+'"/>'+
+          '<path class="edge" style="stroke-width:'+sw+'" d="'+edge+'"/>'+
+        '</svg>';
+      frag.appendChild(bay);
+    }
+    dolly.insertBefore(frag,dolly.firstChild);
+    placeRose(W,openW,ys,apex);
+  }
+
+  /* The rose window is a flat element, so it has no idea where the
+     arches are. Rather than guess a percentage, measure the
+     furthest arch on screen and fit the window inside it. */
+  function placeRose(W,openW,ys,apex){
+    const vw=window.innerWidth, vh=window.innerHeight;
+    const zL=FIRST-(BAYS-1)*GAP, scL=1000/(1000-zL);
+    const boxTop=50-BOX*50;
+
+    /* a viewBox y, as a pixel position on screen */
+    const yAt=y=>(ORIGIN+((boxTop+(y/1000)*BOX*100)-ORIGIN)*scL)/100*vh;
+
+    const apexY=yAt(apex), springY=yAt(ys), archH=springY-apexY;
+    const spanPx=(openW/W)*BOX*scL*vw;
+    if(archH<=0||spanPx<=0) return;
+
+    let cy=apexY+archH*0.48;
+
+    /* half-width of a two-centred arch at height v above the spring */
+    const r=(archH*archH+spanPx*spanPx/4)/spanPx;
+    const v=springY-cy;
+    const half=(v>0&&v<r) ? (spanPx/2-r+Math.sqrt(r*r-v*v)) : spanPx/2;
+
+    let d=0.80*Math.min(2*half, archH*0.68);   /* leaves air inside the innermost arch */
+
+    /* and keep clear of the names below */
+    const maxBottom=vh*0.58;
+    if(cy+d/2>maxBottom) d=2*(maxBottom-cy);
+
+    /* If nothing sensible fits, hide it rather than substituting a
+       size of its own: a fallback here once overrode the measured
+       fit on every phone and pushed the window over the arches. */
+    if(!(d>8)){ rose.style.display='none'; return; }
+
+    rose.style.display='';
+    rose.style.width=rose.style.height=Math.round(d)+'px';
+    rose.style.top=Math.round(cy)+'px';
+  }
+
+  build();
+  let t=null, lastW=window.innerWidth, lastH=window.innerHeight;
+  window.addEventListener('resize',()=>{
+    /* the arch count depends on height as well as width now, but a
+       phone address bar sliding away must not trigger a rebuild */
+    const dw=Math.abs(window.innerWidth-lastW), dh=Math.abs(window.innerHeight-lastH);
+    if(dw<48 && dh<140) return;
+    lastW=window.innerWidth; lastH=window.innerHeight;
+    clearTimeout(t); t=setTimeout(build,240);
+  },{passive:true});
+})();
+
+/* ============================================================
+   THE ROSE WINDOW — flat, viewport-scaled, framed by the arch.
+   Each pane ignites on its own beat.
+   ============================================================ */
+(function buildRose(){
+  const svg=document.getElementById('rose'), NS='http://www.w3.org/2000/svg';
+  const cx=300, cy=300;
+  const jewels=['#3358B8','#C03A55','#2E8C72','#6B48A8','#2589C4','#D9B02E'];
+  const defs=document.createElementNS(NS,'defs');
+
+  const stop=(off,col,op)=>{
+    const el=document.createElementNS(NS,'stop');
+    el.setAttribute('offset',off);
+    el.setAttribute('stop-color',col);
+    el.setAttribute('stop-opacity',op);
+    return el;
+  };
+  jewels.forEach((c,i)=>{
+    const g=document.createElementNS(NS,'radialGradient');
+    g.setAttribute('id','j'+i); g.setAttribute('cx','50%'); g.setAttribute('cy','36%');
+    g.appendChild(stop('0%','#FFFFFF','.55'));
+    g.appendChild(stop('30%',c,'1'));
+    g.appendChild(stop('100%',c,'.74'));
+    defs.appendChild(g);
+  });
+  svg.appendChild(defs);
+
+  const leaf=(r1,r2,w)=>{
+    const k=(r2-r1)*0.42;
+    return 'M0,'+(-r1)+' C'+w+','+(-r1-k)+' '+w+','+(-r2+k)+' 0,'+(-r2)+
+           ' C'+(-w)+','+(-r2+k)+' '+(-w)+','+(-r1-k)+' 0,'+(-r1)+' Z';
+  };
+  const ring=(count,r1,r2,w,base,step)=>{
+    for(let i=0;i<count;i++){
+      const p=document.createElementNS(NS,'path');
+      p.setAttribute('d',leaf(r1,r2,w));
+      p.setAttribute('fill','url(#j'+(i%jewels.length)+')');
+      p.setAttribute('stroke','#050912');
+      p.setAttribute('stroke-width','3');
+      p.setAttribute('class','petal');
+      p.setAttribute('transform','translate('+cx+' '+cy+') rotate('+(i*360/count)+')');
+      p.style.animationDelay=(base+i*step)+'ms';
+      svg.appendChild(p);
+    }
+  };
+
+  ring(16,152,274,40,1400,52);
+  ring(8,80,142,32,2250,58);
+
+  [288,278,148,76].forEach((r,i)=>{
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',r);
+    c.setAttribute('fill','none');
+    c.setAttribute('stroke','rgba(227,199,102,'+(i===0?'.7':'.34')+')');
+    c.setAttribute('stroke-width',i===0?3:1.6);
+    c.setAttribute('class','tracery');
+    svg.appendChild(c);
+  });
+
+  const core=document.createElementNS(NS,'circle');
+  core.setAttribute('cx',cx);core.setAttribute('cy',cy);core.setAttribute('r',72);
+  core.setAttribute('fill','url(#j5)');core.setAttribute('class','petal');
+  core.style.animationDelay='2800ms';
+  svg.appendChild(core);
+
+  const cross=document.createElementNS(NS,'path');
+  cross.setAttribute('d','M295,250 h10 v32 h28 v10 h-28 v58 h-10 v-58 h-28 v-10 h28 Z');
+  cross.setAttribute('fill','#FFF6DC');
+  cross.setAttribute('class','petal');
+  cross.style.animationDelay='3150ms';
+  svg.appendChild(cross);
+})();
+
+/* ---------- dust turning in the light ---------- */
+(function motes(){
+  const hero=document.getElementById('hero');
+  for(let i=0;i<15;i++){
+    const m=document.createElement('span');
+    m.className='mote';
+    const s=Math.random()*2.4+1;
+    m.style.width=m.style.height=s+'px';
+    m.style.left=Math.random()*100+'%';
+    m.style.top=(58+Math.random()*46)+'%';
+    m.style.animationDuration=(14+Math.random()*16)+'s';
+    m.style.animationDelay=(Math.random()*16)+'s';
+    hero.appendChild(m);
+  }
+})();
+
+/* ---------- the aisle drifts as you scroll ----------
+   No pointer tilt: rotating the scene forced every bay layer to
+   re-rasterise on each mouse move, which stuttered badly on
+   desktop. Scrolling is infrequent, so a depth drift is safe. */
+(function drift(){
+  const dolly=document.getElementById('dolly');
+  const hero=document.getElementById('hero');
+  const inner=hero&&hero.querySelector('.hero-inner');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let z=0, raf=null;
+
+  function apply(){ dolly.style.transform='translateZ('+z.toFixed(1)+'px)'; raf=null; }
+
+  window.addEventListener('scroll',()=>{
+    const p=Math.min(1,window.scrollY/Math.max(1,window.innerHeight));
+    z=p*260;
+    if(inner){
+      inner.style.opacity=String(Math.max(0,1-p*1.6));
+      inner.style.transform='translateX(-50%) translateY('+(p*-54).toFixed(1)+'px)';
+    }
+    if(!raf) raf=requestAnimationFrame(apply);
+  },{passive:true});
+})();
+
+/* ---------- rays behind the dove ---------- */
+(function rays(){
+  const g=document.querySelector('.dove .rays'); if(!g) return;
+  let d='';
+  for(let i=0;i<16;i++){
+    const a=i*22.5*Math.PI/180;
+    const x1=130+Math.cos(a)*44, y1=100+Math.sin(a)*44;
+    const x2=130+Math.cos(a-0.018)*112, y2=100+Math.sin(a-0.018)*112;
+    const x3=130+Math.cos(a+0.018)*112, y3=100+Math.sin(a+0.018)*112;
+    d+='M'+x1.toFixed(1)+','+y1.toFixed(1)+' L'+x2.toFixed(1)+','+y2.toFixed(1)+
+       ' L'+x3.toFixed(1)+','+y3.toFixed(1)+' Z ';
+  }
+  const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+  path.setAttribute('d',d);
+  g.appendChild(path);
+})();
+
+/* ---------- split names into letters ---------- */
+document.querySelectorAll('[data-split]').forEach(el=>{
+  const base=parseInt(el.dataset.delay||'800',10);
+  el.innerHTML=[...el.textContent.trim()].map((c,i)=>
+    `<span class="ch" style="animation-delay:${base+i*70}ms">${c}</span>`).join('');
+});
+
+/* ============================================================
+   THE OPENING SEQUENCE
+   ============================================================ */
+const doors=document.getElementById('doors');
+function openDoors(){
+  if(doors.classList.contains('open'))return;
+  doors.classList.add('open');
+  document.body.classList.remove('locked');
+  document.getElementById('hero').classList.add('is-lit');
+  setTimeout(()=>doors.remove(),2900);
+  setTimeout(()=>document.getElementById('music').classList.add('show'),2500);
+  tryMusic();
+}
+doors.addEventListener('click',openDoors);
+doors.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' ') {e.preventDefault();openDoors();} });
+
+/* ---------- music ---------- */
+const audio=document.getElementById('audio'), mBtn=document.getElementById('music');
+let hasAudio=true;
+audio.addEventListener('error',()=>{ hasAudio=false; mBtn.style.display='none'; });
+function tryMusic(){
+  if(!hasAudio)return;
+  audio.volume=.55;
+  audio.play().then(()=>mBtn.classList.add('playing')).catch(()=>{});
+}
+mBtn.addEventListener('click',()=>{
+  if(audio.paused){ audio.play().then(()=>mBtn.classList.add('playing')).catch(()=>{}); }
+  else { audio.pause(); mBtn.classList.remove('playing'); }
+});
+
+/* ---------- countdown ---------- */
+(function countdown(){
+  const target=new Date(CONFIG.weddingDate).getTime();
+  const els={d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),
+             m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
+  const pad=n=>String(Math.max(0,n)).padStart(2,'0');
+  function put(el,v){
+    if(el.textContent===v)return;
+    el.textContent=v; el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick');
+  }
+  function tick(){
+    let diff=target-Date.now();
+    if(diff<=0){
+      Object.values(els).forEach(e=>e.textContent='00');
+      document.getElementById('clockNote').textContent='today, they become one';
+      return;
+    }
+    const d=Math.floor(diff/864e5), h=Math.floor(diff/36e5)%24,
+          m=Math.floor(diff/6e4)%60, s=Math.floor(diff/1e3)%60;
+    put(els.d,pad(d)); put(els.h,pad(h)); put(els.m,pad(m)); put(els.s,pad(s));
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ---------- scroll reveals ---------- */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- the nav appears once the hero is behind you ---------- */
+(function navOnLeave(){
+  const nav=document.getElementById('nav'), hero=document.getElementById('hero');
+  if(!nav||!hero) return;
+  new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      const onHero=e.intersectionRatio>0.4;
+      nav.classList.toggle('show', !onHero && hero.classList.contains('is-lit'));
+    });
+  },{threshold:[0,0.2,0.4,0.6,1]}).observe(hero);
+})();
+
+/* ---------- active nav link ---------- */
+const links=[...document.querySelectorAll('#nav a')];
+const spy=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{threshold:.35});
+['hero','countdown','events','venue','travel'].forEach(id=>{
+  const s=document.getElementById(id); if(s) spy.observe(s);
+});
+
+</script>
+</body>
+</html>
