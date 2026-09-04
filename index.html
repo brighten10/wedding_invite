@@ -60,7 +60,7 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-body.locked{overflow:hidden;height:100vh;}
+body.locked{overflow:hidden;overscroll-behavior:none;}
 img{display:block;max-width:100%;}
 a{color:inherit;}
 
@@ -75,23 +75,23 @@ a{color:inherit;}
 #doors{
   position:fixed; inset:0; z-index:100; cursor:pointer;
   perspective:1700px; background:#05070E;
-  transition:opacity 1.5s ease .5s, filter 1.2s ease .45s;
+  transition:opacity 1.5s ease .5s;
   will-change:opacity;
 }
-#doors.open{opacity:0; filter:brightness(1.5); pointer-events:none;}
+#doors.open{opacity:0; pointer-events:none;}
 
 .door{
   position:absolute; top:0; bottom:0; width:50.4%;
   background:
     linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,0) 26%,rgba(0,0,0,0) 74%,rgba(0,0,0,.5)),
     linear-gradient(180deg,#141A2E 0%,#0A0E1C 58%,#05070E 100%);
-  transition:transform 2s cubic-bezier(.6,0,.24,1), filter 2s ease;
+  transition:transform 2s cubic-bezier(.6,0,.24,1);
   will-change:transform;
 }
 .door.l{left:0; transform-origin:left center;}
 .door.r{right:0; transform-origin:right center;}
-#doors.open .door.l{transform:rotateY(-96deg); filter:brightness(.3);}
-#doors.open .door.r{transform:rotateY(96deg);  filter:brightness(.3);}
+#doors.open .door.l{transform:rotateY(-96deg);}
+#doors.open .door.r{transform:rotateY(96deg);}
 
 /* a single arch line */
 .door .panel{
@@ -1236,7 +1236,7 @@ set('closingLine',CONFIG.closingLine);
     /* the arch count depends on height as well as width now, but a
        phone address bar sliding away must not trigger a rebuild */
     const dw=Math.abs(window.innerWidth-lastW), dh=Math.abs(window.innerHeight-lastH);
-    if(dw<48 && dh<140) return;
+    if(dw<48 && dh<window.innerHeight*0.25) return;
     lastW=window.innerWidth; lastH=window.innerHeight;
     clearTimeout(t); t=setTimeout(build,240);
   },{passive:true});
@@ -1382,11 +1382,24 @@ document.querySelectorAll('[data-split]').forEach(el=>{
 /* ============================================================
    THE OPENING SEQUENCE
    ============================================================ */
+if('scrollRestoration' in history) history.scrollRestoration='manual';
+
 const doors=document.getElementById('doors');
 function openDoors(){
   if(doors.classList.contains('open'))return;
   doors.classList.add('open');
   document.body.classList.remove('locked');
+
+  /* Unlocking restores the scrollable page, and a browser may hand
+     back a remembered offset. Jump to the top without smoothing,
+     and clear anything the scroll handler had already applied. */
+  const html=document.documentElement, prev=html.style.scrollBehavior;
+  html.style.scrollBehavior='auto';
+  window.scrollTo(0,0);
+  html.style.scrollBehavior=prev;
+  const inner=document.querySelector('.hero-inner');
+  if(inner){ inner.style.opacity=''; inner.style.transform=''; }
+
   document.getElementById('hero').classList.add('is-lit');
   setTimeout(()=>doors.remove(),2900);
   setTimeout(()=>document.getElementById('music').classList.add('show'),2500);
